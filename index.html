@@ -6,9 +6,14 @@
 		<title>Template • TodoMVC</title>
 		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+		<style type="text/css">
+			[v-cloak] {
+			  display: none;
+			}
+		</style>
 	</head>
 	<body>
-		<section class="todoapp" id="todoapp">
+		<section class="todoapp" id="todoapp" v-cloak>
 			<header class="header">
 				<h1>todos</h1>
 				<!-- 添加 Todo，绑定回车事件 -->

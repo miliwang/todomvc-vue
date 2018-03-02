@@ -26,11 +26,21 @@ var todo = JSON.parse(data);
                 this.left++;
             },
             onChangeAllCheck: function(e) {
-                this.todoList = this.todoList.map( (item) => {
+                if(this.isSelected === "active"){
+                    this.left = 0;
+                    this.todoList = JSON.parse(localStorage["todos"] || '[]');
+                }
+                if(this.isSelected === "completed"){
+                    this.left = this.count;
+                }
+                todo = JSON.parse(localStorage["todos"] || '[]');
+                this.todoList = todo.map( (item) => {
+                    console.log(this.left+"---------2")
                     item.isCompleted = !(this.left === 0);
                     return item;
                 });
-                this.left = this.left === 0 ? this.todoList.length : 0;                
+                this.left = this.left === 0 ? this.todoList.length : 0;      
+                localStorage["todos"] = JSON.stringify(this.todoList || "[]");                
             },
             // 点击复选框
             onChangeChecked: function() {
@@ -85,7 +95,6 @@ var todo = JSON.parse(data);
                         return !item.isCompleted ? item : "";  
                     }
                     if (select === 'completed') {
-                        
                         return item.isCompleted ? item :"";
                     }
                     return item;
